@@ -8,3 +8,9 @@ class Livro(models.Model):
 
     def __str__(self):
         return f"({self.id}) {self.titulo} ({self.quantidade})"
+    from .categoria import Categoria
+    categoria = models.ForeignKey(
+        Categoria, on_delete=models.PROTECT, related_name="livros", null=True, blank=True
+    )
+    from .editora import Editora
+    editora = models.ForeignKey(Editora, on_delete=models.PROTECT, related_name="livros", null=True, blank=True)
